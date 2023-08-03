@@ -12,16 +12,19 @@ const Form = () => {
           <label>Valor</label>
           <input className="input_style" type="number" />
         </div>
-
-        <div className="radio">
-          <input className="radio_input" type="radio" />
-          <label>Entradas</label>
+        <div className="radio_container">
+          <div className="radio">
+            <input className="radio_input" type="radio" />
+            <label>Entradas</label>
+          </div>
+          <div className="radio">
+            <input className="radio_input" type="radio" />
+            <label>Saídas</label>
+          </div>
         </div>
-        <div className="radio">
-          <input className="radio_input" type="radio" />
-          <label>Saídas</label>
+        <div className="form_btn">
+          <button className="outline_btn">ADICIONAR</button>
         </div>
-        <button className="form_btn">ADICIONAR</button>
       </div>
     </>
   );

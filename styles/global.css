@@ -55,12 +55,25 @@
 .form_btn {
   padding: 5px 10px;
   margin-top: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-  background-color: teal;
   margin-bottom: 15px;
+  display: flex;
+}
+
+.radio_container {
+  display: flex
+}
+
+@media screen and (max-width: 640px) {
+  .form_container {
+    justify-content:center;
+    align-items:center
+  }
+
+  .form_btn {
+    justify-content:center;
+    align-items:center
+  }
+
 }
 
 .main {
@@ -95,6 +108,12 @@
   filter: invert(1);
 }
 
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  };
+}
+
 .gradient {
   height: fit-content;
   z-index: 3;
@@ -120,12 +139,6 @@
   opacity: 0.15;
 }
 
-@media screen and (max-width: 640px) {
-  .main {
-    padding: 0;
-  }
-}
-
 /* Tailwind Styles */
 
 .app {
@@ -138,6 +151,10 @@
 
 .outline_btn {
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn2 {
+  @apply rounded-full border border-black bg-transparent py-0.5	px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
 .head_text {
