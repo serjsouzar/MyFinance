@@ -24,8 +24,9 @@ const Home = () => {
     setUpProviders();
   }, []);
 
-  function handleClick() {
-    <Link href="/finance-page" />;
+  function handleSession() {
+    session?.user
+    //TODO: loader here
   }
 
   return (
