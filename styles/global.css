@@ -11,7 +11,7 @@
 .home {
   background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #ffff 100%);
   width: 100vw;
-  min-height: 100vh;
+  min-height: 77vh;
   display: flex;
   justify-content: center;
 }
@@ -63,7 +63,46 @@
   display: flex
 }
 
+.resume_item {
+  height: 100px;
+  background-color: #fff;
+  width: 31%;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 15px;
+  transition: all ease 0.3s;
+}
+
+.resume_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  gap: 10px;
+  margin: 10px auto;
+}
+
+.resume_header svg {
+  width: 25px;
+  height: 25px;
+}
+
+.resume_title {
+  font-size: 20px;
+}
+
+.resume_total {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 640px) {
+  .home {
+    min-height: 68vh;
+  }
+  
   .form_container {
     justify-content:center;
     align-items:center
@@ -72,6 +111,18 @@
   .form_btn {
     justify-content:center;
     align-items:center
+  }
+
+  .resume_item p {
+    font-size: 12px;
+  }
+
+  .resume_item span {
+    font-size: 20px;
+  }
+
+  .resume_item svg {
+   display: none;
   }
 
 }
@@ -209,11 +260,16 @@
 
 /* Form Component */
 .form_container {
-  @apply rounded-md bg-white m-0 w-full max-w-6xl flex justify-around mt-3.5 pt-2;
+  @apply rounded-md bg-white m-0 w-full max-w-6xl flex justify-around mt-24	pt-2;
 }
 
 .input_container {
   @apply flex flex-col mb-4;
+}
+
+/*Resume Container*/
+.resume_container {
+  @apply max-w-6xl w-11/12 h-8 m-0 flex gap-5	-mt-12 justify-around				
 }
 
 /* Nav Component */

@@ -6,6 +6,8 @@ import { signIn, useSession, getProviders } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import Link from "next/link";
+import Main from "./Main";
+
 
 const Home = () => {
   const { data: session } = useSession();
@@ -30,7 +32,7 @@ const Home = () => {
     <>
       {" "}
       {session?.user ? (
-        <div className="flex flex-col items-center">
+        /*         <div className="flex flex-col items-center">
           <h1 className="head_text text-center sm:flex flex-col flex-center">
             Bem-vindo,
             <span className="blue_gradient h-20">{session?.user.name}</span>
@@ -51,7 +53,15 @@ const Home = () => {
             agora!
           </p>
 
-        </div>
+        </div> */
+
+        <>
+          <div className="home">
+            <div className="home_div">
+              <Main />
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <div className="flex-col space-y-6 sm:space-y-60">
@@ -88,15 +98,6 @@ const Home = () => {
                 Sign In
               </button>
             ))}
-          <footer className="flex flex-col flex-center">
-            <p className="desc">Powered by</p>
-            <Image
-              width={50}
-              height={50}
-              src="/images/nextLogo.png"
-              alt="next-logo"
-            />
-          </footer>
         </>
       )}
     </>
