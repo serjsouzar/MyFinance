@@ -5,26 +5,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { signOut, useSession, getProviders } from "next-auth/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-
 
 const Nav = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
-
-  const router = useRouter();
-  const pathName = usePathname()
-
-  function handleLogOut() {
-    try {
-      if(pathName === "/user-page")
-      router.push("/")
-       signOut()
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -41,13 +26,15 @@ const Nav = () => {
       style={{ background: "transparent" }}
     >
       <div className="flex gap-2 flex-center">
-        <Image
-          src="/images/logo.svg"
-          alt="Promptopia Logo"
-          width={30}
-          height={30}
-          className="object-contain"
-        />
+        <Link href="/">
+          <Image
+            src="/images/logo.svg"
+            alt="Promptopia Logo"
+            width={30}
+            height={30}
+            className="object-contain"
+          />
+        </Link>
 
         <p className="logo_text">MyFinance</p>
       </div>
@@ -55,7 +42,6 @@ const Nav = () => {
       {session?.user ? (
         <div className="flex gap-3 md:gap-5">
           <Link href="/">
-            {router.push("/")}
             <button
               type="button"
               onClick={() => {
