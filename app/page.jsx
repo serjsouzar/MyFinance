@@ -1,14 +1,12 @@
 import Home from "@/components/Home";
 import Image from "next/image";
 
-const MainPage = () => {
+const HomePage = () => {
   return (
     <>
-      
       <Home />
-      
     </>
   );
 };
 
-export default MainPage;
+export default HomePage;

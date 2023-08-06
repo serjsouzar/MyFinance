@@ -1,18 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
-import Link from "next/link";
-import Main from "./Main";
-
 
 const Home = () => {
   const { data: session } = useSession();
-  const router = useRouter();
-
   const [providers, setProviders] = useState(null);
 
   useEffect(() => {
@@ -24,44 +16,11 @@ const Home = () => {
     setUpProviders();
   }, []);
 
-  function handleSession() {
-    session?.user
-    //TODO: loader here
-  }
-
   return (
     <>
       {" "}
       {session?.user ? (
-        /*         <div className="flex flex-col items-center">
-          <h1 className="head_text text-center sm:flex flex-col flex-center">
-            Bem-vindo,
-            <span className="blue_gradient h-20">{session?.user.name}</span>
-            <br className="max-md:hidden" />
-          </h1>
-          
-          <div className="flex-center">
-            <Link href="/finance-page">
-              <button className="black_btn" onClick={handleClick}>
-                Controle de Finanças
-              </button>
-            </Link>
-          </div>
-
-        
-          <p className="desc text-center">
-            Utilize a pagina de controle de finanças para começar seu controle
-            agora!
-          </p>
-
-        </div> */
-
         <>
-          <div className="home">
-            <div className="home_div">
-              <Main />
-            </div>
-          </div>
         </>
       ) : (
         <>
@@ -93,7 +52,7 @@ const Home = () => {
               <button
                 type="button"
                 key={provider.name}
-                onClick={() => signIn(provider.id)}
+                onClick={() => signIn(provider.id, { callbackUrl: '/myfinance-page' })}
                 className="black_btn"
               >
                 Sign In
