@@ -1,4 +1,3 @@
-//import { ResumeItem } from "../ResumeItem/ResumeItem";
 import {
   FaRegArrowAltCircleUp,
   FaRegArrowAltCircleDown,

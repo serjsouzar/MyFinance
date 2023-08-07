@@ -2,11 +2,11 @@ import { connectToDb } from "@/utils/database";
 import Finance from "@/models/finance";
 
 export const POST = async (request) => {
-  const { userId, desc, value, outcome } = await request.json()
+  const { userId, desc, amount, outcome } = await request.json()
 
   try {
     await connectToDb()
-    const newFinance = new Finance({creator: userId, desc, value, outcome});
+    const newFinance = new Finance({creator: userId, desc, amount, outcome});
 
     await newFinance.save();
     return new Response(JSON.stringify(newFinance), {status: 201});

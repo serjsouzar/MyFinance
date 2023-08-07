@@ -3,13 +3,13 @@ import {Schema, model, models} from "mongoose";
 const FinanceSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   desc: {
     type: String,
     required: [true, 'Description is required'],
   },
-  value: {
+  amount: {
     type: Number,
     required: [true, 'Value is required'],
   },
