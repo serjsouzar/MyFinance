@@ -28,14 +28,14 @@ const Form = ({finance, setFinance, submitting, handleSubmit}) => {
           <div className="radio">
             <input 
               className="radio_input" type="radio" 
-              onChange={() => setFinance({...finance, outcome: true})}
+              onChange={() => setFinance({...finance, outcome: false})}
               />
             <label>Entradas</label>
           </div>
           <div className="radio">
             <input 
               className="radio_input" type="radio" 
-              onChange={() => setFinance({...finance, outcome: false})}
+              onChange={() => setFinance({...finance, outcome: true})}
               />
             <label>Saídas</label>
           </div>

@@ -1,9 +1,9 @@
 import Form from "./Form";
 
-const Main = ({ finance, setFinance, submitting, setSubmitting, session }) => {
+const Main = ({ finance, setFinance, submitting, setSubmitting, session, refresh }) => {
   /* Create Finance */
   const createFinance = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     setSubmitting(true);
 
     try {
