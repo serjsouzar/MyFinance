@@ -12,6 +12,7 @@ const Main = ({
   submitting,
   setSubmitting,
   session,
+  myFinances,
   setMyFinances
 }) => {
 
@@ -60,6 +61,8 @@ const Main = ({
       setIsChecked={setIsChecked}
       submitting={submitting}
       handleSubmit={createFinance}
+      setMyFinances={setMyFinances}
+      myFinances={myFinances}
     />
   );
 };

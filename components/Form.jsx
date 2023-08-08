@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Grid from "./Grid";
 
 const Form = ({
   desc,
@@ -11,6 +12,8 @@ const Form = ({
   setIsChecked,
   submitting,
   handleSubmit,
+  myFinances,
+  setMyFinances
 }) => {
   return (
     <>
@@ -62,6 +65,7 @@ const Form = ({
           </button>
         </div>
       </form>
+      <Grid itens={myFinances} setItens={setMyFinances}/>
     </>
   );
 };
