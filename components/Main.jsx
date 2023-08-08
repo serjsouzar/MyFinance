@@ -1,24 +1,47 @@
+"use client";
+
 import Form from "./Form";
 
-const Main = ({ finance, setFinance, submitting, setSubmitting, session, refresh }) => {
+const Main = ({
+  desc,
+  setDesc,
+  amount,
+  setAmount,
+  isChecked,
+  setIsChecked,
+  submitting,
+  setSubmitting,
+  session,
+  setMyFinances
+}) => {
+
+  const fetchFinances = async () => {
+    const response = await fetch(`/api/users/${session?.user.id}/finances`);
+    const data = await response.json();
+
+    setMyFinances(data);
+  };
+
   /* Create Finance */
   const createFinance = async (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     setSubmitting(true);
 
     try {
       const response = await fetch("/api/finance/new", {
         method: "POST",
         body: JSON.stringify({
-          desc: finance.desc,
-          amount: finance.amount,
+          desc: desc,
+          amount: amount,
           userId: session?.user.id,
-          outcome: finance.outcome,
+          outcome: isChecked,
         }),
       });
 
       if (response.ok) {
-        console.log("Finança cadastrada com sucesso");
+        fetchFinances();
+        setDesc("");
+        setAmount("");
       }
     } catch (error) {
       console.log("Error", error);
@@ -27,13 +50,17 @@ const Main = ({ finance, setFinance, submitting, setSubmitting, session, refresh
     }
   };
 
-  return (    
-          <Form
-            finance={finance}
-            setFinance={setFinance}
-            submitting={submitting}
-            handleSubmit={createFinance}
-          />
+  return (
+    <Form
+      desc={desc}
+      setDesc={setDesc}
+      amount={amount}
+      setAmount={setAmount}
+      isChecked={isChecked}
+      setIsChecked={setIsChecked}
+      submitting={submitting}
+      handleSubmit={createFinance}
+    />
   );
 };
 

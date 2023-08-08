@@ -10,28 +10,31 @@ const MyFinancePage = () => {
   const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
 
-  const [finance, setFinance] = useState({
-    desc: "",
-    amount: 0,
-    outcome: false,
-  });
+  /* Form states */
+  const [desc, setDesc] = useState("")
+  const [amount, setAmount] = useState("")
+  const [isChecked, setIsChecked] = useState(false)
 
-  const [myFinances, setMyFinances] = useState([]);
+  /* Resume states */
   const [income, setIncome] = useState(0);
   const [outcome, setOutcome] = useState(0);
   const [total, setTotal] = useState(0);
 
+  /* Finances */
+  const [myFinances, setMyFinances] = useState([]);
+
   /* fetching users finances */
-    useEffect(() => {
-      const fetchFinances = async () => {
-        const response = await fetch(`/api/users/${session?.user.id}/finances`);
-        const data = await response.json();
+  useEffect(() => {
+    const fetchFinances = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}/finances`);
+      const data = await response.json();
 
-        setMyFinances(data);
-      };
-      if (session?.user.id) fetchFinances();
-    }, [session]);
+      setMyFinances(data);
+    };
+    if (session?.user.id) fetchFinances();
+  }, [session?.user]);
 
+  /* Updating resume */
   useEffect(() => {
     const amountOutcome = myFinances
       .filter((item) => item.outcome)
@@ -67,11 +70,16 @@ const MyFinancePage = () => {
         <div className="home_div">
           <Resume income={income} outcome={outcome} total={total} />
           <Main
-            finance={finance}
-            setFinance={setFinance}
+            desc={desc}
+            setDesc={setDesc}
+            amount={amount}
+            setAmount={setAmount}
+            isChecked={isChecked}
+            setIsChecked={setIsChecked}
             submitting={submitting}
             setSubmitting={setSubmitting}
             session={session}
+            setMyFinances={setMyFinances}
           />
         </div>
       </div>

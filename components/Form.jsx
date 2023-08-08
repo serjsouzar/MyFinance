@@ -1,47 +1,65 @@
-"use client"
+"use client";
 
 import React from "react";
 
-
-const Form = ({finance, setFinance, submitting, handleSubmit}) => {
+const Form = ({
+  desc,
+  setDesc,
+  amount,
+  setAmount,
+  isChecked,
+  setIsChecked,
+  submitting,
+  handleSubmit,
+}) => {
   return (
     <>
-      <form 
-        className="form_container"
-        onSubmit={handleSubmit}
-        >
+      <form className="form_container" onSubmit={handleSubmit}>
         <div className="input_container">
           <label>Descrição</label>
-          <input 
-          className="input_style" type="text" 
-          onChange={(e) => setFinance({...finance, desc: e.target.value})}
+          <input
+            className="input_style"
+            type="text"
+            value={desc}
+            onChange={(e) => setDesc( e.target.value )}
           />
         </div>
         <div className="input_container">
           <label>Valor</label>
-          <input 
-          className="input_style" type="number" 
-          onChange={(e) => setFinance({...finance, amount: e.target.value})}
+          <input
+            className="input_style"
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
         </div>
         <div className="radio_container">
           <div className="radio">
-            <input 
-              className="radio_input" type="radio" 
-              onChange={() => setFinance({...finance, outcome: false})}
-              />
-            <label>Entradas</label>
+            <input
+              className="radio_input"
+              type="radio"
+              id="rIncome"
+              name="group1"
+              defaultChecked
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            <label htmlFor="rIncome">Entradas</label>
           </div>
           <div className="radio">
-            <input 
-              className="radio_input" type="radio" 
-              onChange={() => setFinance({...finance, outcome: true})}
-              />
-            <label>Saídas</label>
+            <input
+              className="radio_input"
+              id="rOutcome"
+              name="group1"
+              type="radio"
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            <label htmlFor="rOutcome">Saídas</label>
           </div>
         </div>
         <div className="form_btn">
-          <button className="outline_btn" disabled={submitting}>ADICIONAR</button>
+          <button className="outline_btn" disabled={submitting}>
+            ADICIONAR
+          </button>
         </div>
       </form>
     </>
