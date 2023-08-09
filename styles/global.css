@@ -102,11 +102,25 @@
   box-shadow: 0px 0px 5px #ccc;
 }
 
+.table_th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px inset #ccc;
+}
+
+.grid_item2 {
+  text-align: -webkit-center
+}
+
+.grid_item2 svg {
+  width: 18px;
+  height: 18px;
+}
 @media screen and (max-width: 640px) {
   .home {
     min-height: 68vh;
   }
-  
+
   .form_container {
     justify-content:center;
     align-items:center
@@ -278,25 +292,23 @@
 
 /* Table Container */
 .table_container {
-  @apply max-w-6xl w-full p-5 rounded-md	bg-white m-5
+  @apply max-w-6xl w-full rounded-md	bg-white m-5
 }
+
+/* Grid Item */
+
+.grid_item {
+  @apply p-4 text-center break-all 
+}
+
+.grid_item2 {
+  @apply p-4
+}
+
 
 /* Nav Component */
 .logo_text {
   @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
-}
-
-.dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
-}
-
-.dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
-}
-
-/* PromptCard Component */
-.prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
 }
 
 .flex-center {

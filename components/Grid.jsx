@@ -1,11 +1,11 @@
 import GridItem from "./GridItem";
 
 const Grid = ({ itens, setItens }) => {
-
+  /* Delete Finance */
   const handleDelete = async (finance) => {
     try {
-      await fetch(`/api/finance/${finance._id}`, {
-        method: "DELETE"
+      await fetch(`/api/finance/${finance._id.toString()}`, {
+        method: "DELETE",
       });
 
       const filteredFinances = itens.filter((fin) => fin._id !== finance._id);
@@ -17,7 +17,8 @@ const Grid = ({ itens, setItens }) => {
   };
 
   return (
-    <table className="table_container">
+    <table 
+      className="table_container">
       <thead>
         <tr>
           <th className="table_th" width={40}>
@@ -32,10 +33,14 @@ const Grid = ({ itens, setItens }) => {
           <th className="table_th" width={10}></th>
         </tr>
       </thead>
+      
       <tbody>
         {itens.map((item) => (
-          console.log(item),
-          <GridItem key={item._id} item={item} onDelete={handleDelete}/>
+          <GridItem
+            key={item._id}
+            item={item}
+            onDelete={() => handleDelete && handleDelete(item)}
+          />
         ))}
       </tbody>
     </table>

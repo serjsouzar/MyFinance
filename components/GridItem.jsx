@@ -4,23 +4,20 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
-//TODO: FIX DELETE & STYLES
-
-
 const GridItem = ({ item, onDelete }) => {
   return (
     <tr>
-      <td>{item.desc}</td>
-      <td>{parseFloat(item.amount).toFixed(2)}</td>
-      <td>
+      <td className="grid_item max-[690px]:px-0">{item.desc}</td>
+      <td className="grid_item max-[690px]:px-0">{parseFloat(item.amount).toFixed(2)}</td>
+      <td className="grid_item2">
         {item.outcome ? (
           <FaRegArrowAltCircleDown color="red" />
         ) : (
           <FaRegArrowAltCircleUp color="green" />
         )}
       </td>
-      <td>
-        <FaTrash onClick={() => onDelete(item._id)} />
+      <td className="grid_item2">
+        <FaTrash cursor={"pointer"} onClick={(onDelete)} />
       </td>
     </tr>
   );

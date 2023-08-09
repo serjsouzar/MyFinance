@@ -31,7 +31,8 @@ const Home = () => {
                 <br className="max-md:hidden" />
                 <span
                   className="orange_gradient 
-      text-center"
+                  text-center
+                  h-20"
                 >
                   {" "}
                   Fácil e rápido
@@ -40,7 +41,7 @@ const Home = () => {
 
               <p className="desc text-center">
                 MyFinance é uma plataforma online para registro e consulta das
-                suas finanças!
+                suas finanças pessoais, clique em Sign In e comece agora!
               </p>
 
               <br />

@@ -9,6 +9,7 @@ export const DELETE = async (request, {params}) => {
     await Finance.findByIdAndRemove(params.id);
 
     return new Response("Finance deleted sucessfully", {status: 200})
+    
   } catch (error) {
     return new Response("Failed to delete finance", {status: 500})
   }
