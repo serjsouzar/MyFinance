@@ -40,7 +40,10 @@ const Home = () => {
                   Fácil e rápido
                 </span>
                 <p className="desc text-center">
-                  Bem-vindo, {session?.user.name}!
+                  Olá, <span className="blue_gradient">{session?.user.name}</span>!
+                </p>
+                <p className="desc text-center">
+                  Deseja registrar ou consultar finanças?
                 </p>
               </h1>
               <br />
@@ -74,7 +77,7 @@ const Home = () => {
 
               <p className="desc text-center">
                 MyFinance é uma plataforma online para registro e consulta das
-                suas finanças pessoais, clique em Sign In e comece agora!
+                suas finanças pessoais, clique em Entrar e comece agora!
               </p>
 
               <br />
