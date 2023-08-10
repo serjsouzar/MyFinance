@@ -16,7 +16,7 @@ const GridItem = ({ item, onDelete }) => {
           <FaRegArrowAltCircleUp color="green" />
         )}
       </td>
-      <td className="grid_item2">
+      <td className="grid_item2 hover:animate-pulse" id="trash_">
         <FaTrash cursor={"pointer"} onClick={(onDelete)} />
       </td>
     </tr>

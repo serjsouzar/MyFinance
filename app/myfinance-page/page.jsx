@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Main from "@/components/Main";
 import Resume from "@/components/Resume";
+import Loading from "./loading";
 
 const MyFinancePage = () => {
   const { data: session } = useSession();
@@ -94,7 +95,9 @@ const MyFinancePage = () => {
       ) : session === null ? (
         <>{router.push("/")}</>
       ) : (
-        <></>
+        <>
+          <Loading />
+        </>
       )
       }
     </>

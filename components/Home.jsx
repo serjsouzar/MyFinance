@@ -2,10 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Loading from "@/app/myfinance-page/loading";
 
 const Home = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
+  const router = useRouter()
+  let loading
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -21,8 +26,36 @@ const Home = () => {
       {" "}
       {session?.user ? (
         <>
+          <div className="flex-col space-y-6 sm:space-y-60">
+            <section className="w-full flex-center flex-col">
+              <h1 className="head_text text-center sm:flex flex-col flex-center">
+                Aqui seu controle financeiro é
+                <br className="max-md:hidden" />
+                <span
+                  className="orange_gradient 
+                  text-center
+                  h-20"
+                >
+                  {" "}
+                  Fácil e rápido
+                </span>
+                <p className="desc text-center">
+                  Bem-vindo, {session?.user.name}!
+                </p>
+              </h1>
+              <br />
+              <br />
+              <button
+                type="button"
+                onClick={() => router.push("/myfinance-page")}
+                className="black_btn"
+              >
+                Comece agora!
+              </button>
+            </section>
+          </div>
         </>
-      ) : (
+      ) : providers ? (
         <>
           <div className="flex-col space-y-6 sm:space-y-60">
             <section className="w-full flex-center flex-col">
@@ -53,14 +86,19 @@ const Home = () => {
               <button
                 type="button"
                 key={provider.name}
-                onClick={() => signIn(provider.id, { callbackUrl: '/myfinance-page' })}
+                onClick={() =>
+                  signIn(provider.id /* , { callbackUrl: "/myfinance-page" } */)
+                }
                 className="black_btn"
               >
-                Sign In
+                Entrar
               </button>
             ))}
         </>
-      )}
+      ) : (
+        <Loading />
+      ) 
+      }
     </>
   );
 };

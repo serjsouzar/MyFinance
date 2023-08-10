@@ -49,7 +49,7 @@ const Nav = () => {
               }}
               className="outline_btn"
             >
-              Sign Out
+              Sair
             </button>
           </Link>
 
