@@ -9,8 +9,8 @@ import Loading from "@/app/myfinance-page/loading";
 const Home = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
-  const router = useRouter()
-  let loading
+  const router = useRouter();
+  let loading;
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -39,12 +39,15 @@ const Home = () => {
                   {" "}
                   Fácil e rápido
                 </span>
-                <p className="desc text-center">
-                  Olá, <span className="blue_gradient">{session?.user.name}</span>!
-                </p>
-                <p className="desc text-center">
-                  Deseja registrar ou consultar finanças?
-                </p>
+                <div className="slide_in">
+                  <p className="desc text-center">
+                    Olá,{" "}
+                    <span className="blue_gradient">{session?.user.name}</span>!
+                  </p>
+                  <p className="desc text-center">
+                    Deseja registrar ou consultar finanças?
+                  </p>
+                </div>
               </h1>
               <br />
               <br />
@@ -100,8 +103,7 @@ const Home = () => {
         </>
       ) : (
         <Loading />
-      ) 
-      }
+      )}
     </>
   );
 };

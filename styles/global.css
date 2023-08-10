@@ -125,6 +125,19 @@
   transform: scale(0.9)
 }
 
+.slide_in {
+  animation: slideMe .7s ease;
+}
+
+
+@keyframes slideMe {
+  0% {
+    transform: skewX(53deg) translateX(-500px)
+  }
+  100% {
+    transform: skewX(0deg)
+  }
+}
 
 @media screen and (max-width: 640px) {
   .home {
