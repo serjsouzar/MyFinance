@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## MyFinance
 
-## Getting Started
+MyFinance é a segunda versão do projeto Controle de Finanças, onde lá foi desenvolvido front em ReactJS o front e integrado com o backend desenvolvido em NodeJS, Express e MongoDB. 
 
-First, run the development server:
+Nesta versão eu quis possibilitar que qualquer pessoa que acessasse o projeto pudesse guardar suas próprias finanças, utilizando NextJS com NextAuth eu pude então chegar na permitir que uma autenticação com a conta Google fosse feita, dessa maneira o usuario tem acesso a sua propria pagina de finanças.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Sendo possivel trabalhar com rotas e integração com banco em projeto Next, a criação de models para usuarios e finanças, conexão com banco e a criação das rotas necessarias estão todas integradas no mesmo projeto.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+MyFinance is the second version of the Controle de Finanças project, where the front end was developed using ReactJS and integrated with the backend developed in NodeJS, Express, and MongoDB.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+In this version, I aimed to enable anyone accessing the project to manage their own finances. By utilizing NextJS with NextAuth, I was able to allow authentication through Google accounts. This way, users gain access to their own finance page.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+With the capability to work with routes and database integration in the Next project, the creation of models for users and finances, database connection, and the necessary route creation are all integrated within the same project.
 
-## Learn More
+## Mobile
 
-To learn more about Next.js, take a look at the following resources:
+![myfinance-02](https://github.com/serjsouzar/MyFinance/assets/61920035/cda5400c-3d05-4d16-874a-94c0d7d6420d)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![myfinance-01](https://github.com/serjsouzar/MyFinance/assets/61920035/b9016da0-d310-4448-9b9a-c7219fdac634)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![myfinance-00](https://github.com/serjsouzar/MyFinance/assets/61920035/ca0d8bcb-89d4-4f65-a3ae-8476d6c5ddff)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
