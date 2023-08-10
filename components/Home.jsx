@@ -58,7 +58,7 @@ const Home = () => {
             </section>
           </div>
         </>
-      ) : providers ? (
+      ) : !session?.user && providers ? (
         <>
           <div className="flex-col space-y-6 sm:space-y-60">
             <section className="w-full flex-center flex-col">
