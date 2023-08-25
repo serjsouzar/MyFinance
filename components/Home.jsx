@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
-import Link from "next/link";
+
+import { MyWeekContext } from "@/context/week.context";
+import { useContext } from 'react';
+
 import { useRouter } from "next/navigation";
 import Loading from "@/app/myfinance-page/loading";
 
@@ -11,6 +14,8 @@ const Home = () => {
   const [providers, setProviders] = useState(null);
   const router = useRouter();
   let loading;
+
+  const { myWeek, setMyWeek } = useContext(MyWeekContext);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -58,6 +63,7 @@ const Home = () => {
               >
                 Comece agora!
               </button>
+              <h1>{myWeek[0]?.desc}</h1>
             </section>
           </div>
         </>
