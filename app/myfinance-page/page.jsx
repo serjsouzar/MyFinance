@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useContext } from 'react';
-import { MyWeekContext } from "@/context/week.context"; 
+import { MyFinanceContext } from "@/context/finances.context"; 
 
 import Main from "@/components/Main";
 import Resume from "@/components/Resume";
@@ -16,23 +15,17 @@ const MyFinancePage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   /* Context */
-  const { myWeek, setMyWeek } = useContext(MyWeekContext);
+  const { myFinances, setMyFinances, setWeek } = useContext(MyFinanceContext);
 
   /* Form states */
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   
-
   /* Resume states */
   const [income, setIncome] = useState(0);
   const [outcome, setOutcome] = useState(0);
   const [total, setTotal] = useState(0);
-  
-
-  /* Finances */
-  const [myFinances, setMyFinances] = useState([]);
-  
 
   /* fetching users finances */
   useEffect(() => {
@@ -94,10 +87,8 @@ const MyFinancePage = () => {
                 submitting={submitting}
                 setSubmitting={setSubmitting}
                 session={session}
-                myFinances={myFinances}
-                setMyFinances={setMyFinances}
               />
-              <button onClick={() => setMyWeek(myFinances)} className="outline_btn" disabled={submitting}>
+              <button onClick={() => setWeek([[...myFinances]])} className="outline_btn" disabled={submitting}>
                 FECHAR SEMANA
               </button>
             </div>

@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import Provider from "@/components/Provider";
 import "./../styles/global.css";
-import { WeekContextProvider } from "@/context/week.context";
+import { FinanceContextProvider } from "@/context/finances.context";
 
 export const metadata = {
   title: "MyFinance",
@@ -20,7 +20,7 @@ const RootLayout = ({ children }) => {
 
           <main className="app">
             <Nav />
-            <WeekContextProvider>{children}</WeekContextProvider>
+            <FinanceContextProvider>{children}</FinanceContextProvider>
           </main>
         </Provider>
       </body>

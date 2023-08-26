@@ -1,6 +1,8 @@
 "use client";
 
 import Form from "./Form";
+import { useContext } from "react";
+import { MyFinanceContext } from "@/context/finances.context";
 
 const Main = ({
   desc,
@@ -12,9 +14,9 @@ const Main = ({
   submitting,
   setSubmitting,
   session,
-  myFinances,
-  setMyFinances
 }) => {
+
+  const { setMyFinances } = useContext(MyFinanceContext);
 
   const fetchFinances = async () => {
     const response = await fetch(`/api/users/${session?.user.id}/finances`);
@@ -51,7 +53,6 @@ const Main = ({
     }
   };
 
-
   return (
     <Form
       desc={desc}
@@ -62,8 +63,6 @@ const Main = ({
       setIsChecked={setIsChecked}
       submitting={submitting}
       handleSubmit={createFinance}
-      setMyFinances={setMyFinances}
-      myFinances={myFinances}
     />
   );
 };

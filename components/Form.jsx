@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
 import Grid from "./Grid";
+
+import {useContext} from "react";
+import { MyFinanceContext } from "@/context/finances.context"; 
 
 const Form = ({
   desc,
@@ -12,9 +14,10 @@ const Form = ({
   setIsChecked,
   submitting,
   handleSubmit,
-  myFinances,
-  setMyFinances
 }) => {
+
+  const { myFinances, setMyFinances } = useContext(MyFinanceContext);
+
   return (
     <>
       <form className="form_container" onSubmit={handleSubmit}>
