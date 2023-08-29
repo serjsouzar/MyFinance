@@ -9,9 +9,10 @@ export const FinanceContextProvider = ({
 }) => {
   const [myFinances, setMyFinances] = useState([]);
   const [week, setWeek] = useState([])
+  const [allFinances, setAllFinances] = useState([])
 
   return (
-    <MyFinanceContext.Provider value={{myFinances, setMyFinances, week, setWeek}}>
+    <MyFinanceContext.Provider value={{myFinances, setMyFinances, week, setWeek, allFinances, setAllFinances}}>
       {children}
     </MyFinanceContext.Provider>
   )

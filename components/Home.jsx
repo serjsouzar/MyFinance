@@ -8,13 +8,14 @@ import { signIn, useSession, getProviders } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/myfinance-page/loading";
 import Grid from "./Grid";
+import WeekCard from "./WeekCard";
 
 const Home = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const router = useRouter();
 
-  const { myFinances, setMyFinances, week, setWeek } = useContext(MyFinanceContext);
+  const { myFinances, setMyFinances, week, setWeek, allFinances, setAllFinances } = useContext(MyFinanceContext);
   
 
   useEffect(() => {
@@ -25,6 +26,18 @@ const Home = () => {
     };
     setUpProviders();
   }, []);
+
+  useEffect(() => {
+    const fetchWeek = async () => {
+      const response = await fetch("/api/week");
+      const data = await response.json();
+      console.log(data)
+      setWeek(data[0].week);
+    };
+    if (session?.user.id) fetchWeek();
+  }, [session?.user]);
+  
+  //console.log(allFinances[0]._id === financeIdsInAWeek[0] ? allFinances[0].desc : false)
 
   return (
     <>
@@ -65,7 +78,11 @@ const Home = () => {
               </button>
             </section>
           </div>
-          {week !== null ? <Grid itens={week} setItens={setWeek}/> : ""}
+           {
+           week.map((i) => (                
+                <WeekCard semana={week.indexOf(i)+1} />
+            ))
+           } 
         </>
       ) : !session?.user && providers ? (
         <>
