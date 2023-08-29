@@ -7,15 +7,15 @@ import { signIn, useSession, getProviders } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
 import Loading from "@/app/myfinance-page/loading";
+import Grid from "./Grid";
 
 const Home = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const router = useRouter();
 
-  const { myFinances, setMyFinances, week } = useContext(MyFinanceContext);
+  const { myFinances, setMyFinances, week, setWeek } = useContext(MyFinanceContext);
   
-  console.log(week)
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -63,9 +63,9 @@ const Home = () => {
               >
                 Comece agora!
               </button>
-              
             </section>
           </div>
+          {week !== null ? <Grid itens={week} setItens={setWeek}/> : ""}
         </>
       ) : !session?.user && providers ? (
         <>

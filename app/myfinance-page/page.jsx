@@ -3,7 +3,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { MyFinanceContext } from "@/context/finances.context"; 
+import { MyFinanceContext } from "@/context/finances.context";
 
 import Main from "@/components/Main";
 import Resume from "@/components/Resume";
@@ -15,13 +15,14 @@ const MyFinancePage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   /* Context */
-  const { myFinances, setMyFinances, setWeek } = useContext(MyFinanceContext);
+  const { myFinances, setMyFinances, week, setWeek } =
+    useContext(MyFinanceContext);
 
   /* Form states */
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  
+
   /* Resume states */
   const [income, setIncome] = useState(0);
   const [outcome, setOutcome] = useState(0);
@@ -68,6 +69,28 @@ const MyFinancePage = () => {
     );
   }, [myFinances]);
 
+  /* WEEK */
+  const createWeek = () => {
+    //setWeek(myFinances)
+    alert("Finanças fechadas, consulte na página inicial");
+    console.log(myFinances);
+
+    try {
+      const response = fetch("/api/week/new", {
+        method: "POST",
+        body: JSON.stringify({
+          finances: myFinances
+        }),
+      });
+
+      if (response.ok) {
+        console.log("ok");
+        setMyFinances([]);
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
 
   return (
     <>
@@ -88,7 +111,11 @@ const MyFinancePage = () => {
                 setSubmitting={setSubmitting}
                 session={session}
               />
-              <button onClick={() => setWeek([[...myFinances]])} className="outline_btn" disabled={submitting}>
+              <button
+                onClick={() => createWeek()}
+                className="outline_btn"
+                disabled={submitting}
+              >
                 FECHAR SEMANA
               </button>
             </div>
