@@ -29,7 +29,7 @@ const MyFinancePage = () => {
   const [total, setTotal] = useState(0);
 
   /* fetching users finances */
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchFinances = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/finances`);
       const data = await response.json();
@@ -37,7 +37,7 @@ const MyFinancePage = () => {
       setMyFinances(data);
     };
     if (session?.user.id) fetchFinances();
-  }, [session?.user]);
+  }, [session?.user]); */
 
   /* Updating resume */
   useEffect(() => {
@@ -75,21 +75,14 @@ const MyFinancePage = () => {
     alert("Finanças fechadas, consulte na página inicial");
     console.log(myFinances);
 
-    try {
-      const response = fetch("/api/week/new", {
-        method: "POST",
-        body: JSON.stringify({
-          finances: myFinances
-        }),
-      });
+    const response = fetch("/api/week/new", {
+      method: "POST",
+      body: JSON.stringify({
+        finances: myFinances,
+      }),
+    });
 
-      if (response.ok) {
-        console.log("ok");
-        setMyFinances([]);
-      }
-    } catch (error) {
-      console.log("Error", error);
-    }
+    setMyFinances([]);
   };
 
   return (

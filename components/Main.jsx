@@ -42,7 +42,7 @@ const Main = ({
       });
 
       if (response.ok) {
-        fetchFinances();
+        //fetchFinances();
         setDesc("");
         setAmount("");
       }
