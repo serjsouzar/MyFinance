@@ -8,10 +8,16 @@ import Main from "@/components/Main";
 import Resume from "@/components/Resume";
 import Loading from "./loading";
 
+import DatePicker from "react-date-picker";
+
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+
 const MyFinancePage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   /* Form states */
   const [desc, setDesc] = useState("");
@@ -31,7 +37,16 @@ const MyFinancePage = () => {
     const fetchFinances = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/finances`);
       const data = await response.json();
+    
+      const selectedDate = date.toISOString().slice(0, 10)
+    
+      //code to fix here !
 
+   /*    data.filter(finance => {
+        finance.createdAt.slice(0,10) === selectedDate ? setMyFinances(finance) : console.log("falhou")
+        console.log(finance)
+      }) */
+    
       setMyFinances(data);
     };
     if (session?.user.id) fetchFinances();
@@ -67,15 +82,31 @@ const MyFinancePage = () => {
     );
   }, [myFinances]);
 
+  /* DATES */
+  const onChange = (date) => {
+    setDate(date)
+    //select date working
+    alert("A data selecionada foi: "+ date.toISOString().slice(0, 10))
+  }
+
+  //console.log(myFinances[2].createdAt.slice(0,10))
+
   return (
     <>
       {" "}
-      {
-      session?.user ? (
+      {session?.user ? (
         <>
           <div className="home">
             <div className="home_div">
               <Resume income={income} outcome={outcome} total={total} />
+
+              <DatePicker
+                onChange={onChange}
+                value={date}
+                locale={"pt-BR"}
+                format={"dd/MM/y"}
+              />
+
               <Main
                 desc={desc}
                 setDesc={setDesc}
@@ -98,8 +129,7 @@ const MyFinancePage = () => {
         <>
           <Loading />
         </>
-      )
-      }
+      )}
     </>
   );
 };

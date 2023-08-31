@@ -17,7 +17,7 @@ const FinanceSchema = new Schema({
     type: Boolean,
     required: [true, 'Type must be outcome or income']
   }
-});
+}, {timestamps: true});
 
 const Finance = models.Finance || model('Finance', FinanceSchema)
 

@@ -206,6 +206,10 @@
   };
 }
 
+.react-date-picker {
+  top: 80px;
+}
+
 .gradient {
   height: fit-content;
   z-index: 3;
