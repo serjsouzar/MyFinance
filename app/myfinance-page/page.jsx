@@ -45,7 +45,7 @@ const MyFinancePage = () => {
       const selectedDate = date.toISOString().slice(0, 10);
 
       data.filter((finance) => {
-        if (finance.createdAt.includes(selectedDate)) {
+        if (finance.createdAt?.includes(selectedDate)) {
           filteredFinances.push(finance) && setMyFinances(filteredFinances);
         } else if (!finance.createdAt?.includes(selectedDate)) {
           setMyFinances(filteredFinances);
