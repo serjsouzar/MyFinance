@@ -32,25 +32,27 @@ const MyFinancePage = () => {
   /* Finances */
   const [myFinances, setMyFinances] = useState([]);
 
+  let filteredFinances = [];
+
   /* fetching users finances */
   useEffect(() => {
     const fetchFinances = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/finances`);
       const data = await response.json();
-    
-      const selectedDate = date.toISOString().slice(0, 10)
-    
-      //code to fix here !
 
-   /*    data.filter(finance => {
-        finance.createdAt.slice(0,10) === selectedDate ? setMyFinances(finance) : console.log("falhou")
-        console.log(finance)
-      }) */
-    
-      setMyFinances(data);
+      const selectedDate = date.toISOString().slice(0, 10);
+
+      data.filter((finance) => {
+        if (finance.createdAt.includes(selectedDate)) {
+          filteredFinances.push(finance) && setMyFinances(filteredFinances);
+        } else if (!finance.createdAt?.includes(selectedDate)) {
+          setMyFinances(filteredFinances);
+        }
+        console.log(myFinances);
+      });
     };
     if (session?.user.id) fetchFinances();
-  }, [session?.user]);
+  }, [session?.user.id && date]);
 
   /* Updating resume */
   useEffect(() => {
@@ -82,14 +84,10 @@ const MyFinancePage = () => {
     );
   }, [myFinances]);
 
-  /* DATES */
+  /* Setting Dates & clearing filtereadFinances */
   const onChange = (date) => {
-    setDate(date)
-    //select date working
-    alert("A data selecionada foi: "+ date.toISOString().slice(0, 10))
-  }
-
-  //console.log(myFinances[2].createdAt.slice(0,10))
+    setDate(date);
+  };
 
   return (
     <>
@@ -105,6 +103,7 @@ const MyFinancePage = () => {
                 value={date}
                 locale={"pt-BR"}
                 format={"dd/MM/y"}
+                clearIcon={null}
               />
 
               <Main
