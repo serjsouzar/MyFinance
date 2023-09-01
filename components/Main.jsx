@@ -1,6 +1,8 @@
 "use client";
 
 import Form from "./Form";
+import { useContext } from "react";
+import { MyFinanceContext } from "@/context/myfinance.context";
 
 const Main = ({
   desc,
@@ -11,16 +13,27 @@ const Main = ({
   setIsChecked,
   submitting,
   setSubmitting,
-  session,
-  myFinances,
-  setMyFinances
+  session
 }) => {
+
+  const { myFinances, setMyFinances, date, setDate } =
+  useContext(MyFinanceContext);
+
+  let filteredFinances = [];
 
   const fetchFinances = async () => {
     const response = await fetch(`/api/users/${session?.user.id}/finances`);
     const data = await response.json();
 
-    setMyFinances(data);
+    const selectedDate = date.toISOString().slice(0, 10);
+
+    data.filter((finance) => {
+      if (finance.createdAt.includes(selectedDate)) {
+        filteredFinances.push(finance) && setMyFinances(filteredFinances);
+      } else if (!finance.createdAt?.includes(selectedDate)) {
+        setMyFinances(filteredFinances);
+      }
+    });
   };
 
   /* Create Finance */

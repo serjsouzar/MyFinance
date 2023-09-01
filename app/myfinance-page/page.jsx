@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSession } from "next-auth/react";
+
 import { useRouter } from "next/navigation";
+import { MyFinanceContext } from "@/context/myfinance.context";
 
 import Main from "@/components/Main";
 import Resume from "@/components/Resume";
-import Loading from "./loading";
 
+import Loading from "./loading";
 import DatePicker from "react-date-picker";
 
 import "react-date-picker/dist/DatePicker.css";
@@ -17,7 +19,10 @@ const MyFinancePage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
-  const [date, setDate] = useState(new Date());
+
+  /* Context */
+  const { myFinances, setMyFinances, date, setDate } =
+    useContext(MyFinanceContext);
 
   /* Form states */
   const [desc, setDesc] = useState("");
@@ -28,9 +33,6 @@ const MyFinancePage = () => {
   const [income, setIncome] = useState(0);
   const [outcome, setOutcome] = useState(0);
   const [total, setTotal] = useState(0);
-
-  /* Finances */
-  const [myFinances, setMyFinances] = useState([]);
 
   let filteredFinances = [];
 
@@ -48,7 +50,6 @@ const MyFinancePage = () => {
         } else if (!finance.createdAt?.includes(selectedDate)) {
           setMyFinances(filteredFinances);
         }
-        console.log(myFinances);
       });
     };
     if (session?.user.id) fetchFinances();
@@ -116,8 +117,6 @@ const MyFinancePage = () => {
                 submitting={submitting}
                 setSubmitting={setSubmitting}
                 session={session}
-                myFinances={myFinances}
-                setMyFinances={setMyFinances}
               />
             </div>
           </div>
